@@ -15,6 +15,10 @@ function toTitleCase(str) {
  
 function start(client) {
   client.onMessage(message => {
+    if (message.body === 'Te3zt') {
+      client.sendText(message.from, "It's work! :)");
+    }
+    
     if (message.body.match(/[a-z0-9]/)) {
       axios.get(`http://localhost:5000/qr?s=${message.body.replace('MINTA ', '')}`).then(response => {
         if (response.data.status === 'success') {

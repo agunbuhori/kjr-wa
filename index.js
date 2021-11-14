@@ -47,12 +47,13 @@ function start(client) {
       axios.get(`https://api-kjr.kampustsl.id/user/qr?s=${codes[0]}`).then(response => {
         if (response.data.status === 'success') {
           client.sendText(message.from, ` بسم الله\n*Ahlan, ${toTitleCase(response.data.message.name)}!*
-          Berikut QR Code dan bukti pendaftaran untuk kajian :
-          *${response.data.schedule.name}*
-          Tempat : *${response.data.schedule.location}*
-          Tanggal : *${response.data.schedule.datetime}*`)
+Berikut QR Code dan bukti pendaftaran untuk kajian :
+*${response.data.schedule.name}*
+Tempat : *${response.data.schedule.location}*
+Tanggal : *${response.data.schedule.datetime}*`)
           ;
           client.sendImage(message.from, response.data.image, 'qrcode.png', `Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.\nبارك الله فيكم
+
 *Catatan :*
 1. QR Code ini hanya untuk satu orang pendaftar.
 2. Mari jaga dan lakukan protokol kesehatan.

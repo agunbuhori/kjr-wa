@@ -57,6 +57,8 @@ Tanggal : *${response.data.schedule.datetime}*`)
 *Catatan :*
 1. QR Code ini hanya untuk satu orang pendaftar.
 2. Mari jaga dan lakukan protokol kesehatan.
+
+Tiket : https://kjr.kampustsl.id/detail/${response.data.message._id}
           `);
         }
       })

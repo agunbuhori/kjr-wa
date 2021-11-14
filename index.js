@@ -44,7 +44,7 @@ function start(client) {
     if (message.body.match(/[a-z0-9]{24}/g)) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
 
-      axios.get(`https://api-kjr.kampustsl.id/user/qr?s=${codes[0]}`).then(response => {
+      axios.get(`https://api-kjr.kampustsl.id/user/qr?s=${codes[0]}&n=${message.from}`).then(response => {
         if (response.data.status === 'success') {
           client.sendText(message.from, ` بسم الله\n*Ahlan, ${toTitleCase(response.data.message.name)}!*
 Berikut QR Code dan bukti pendaftaran untuk kajian :

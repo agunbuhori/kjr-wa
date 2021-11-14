@@ -1,7 +1,29 @@
 const wa = require('@open-wa/wa-automate');
 const { default: axios } = require('axios');
- 
-wa.create().then(client => start(client));
+const { express } = require('cookies');
+const fs = require('fs');
+const path = require('path/posix');
+const app = require('express')()
+
+wa.ev.on('qr.**', async qrcode => {
+  //qrcode is base64 encoded qr code image
+  //now you can do whatever you want with it
+  const imageBuffer = Buffer.from(
+    qrcode.replace('data:image/png;base64,', ''),
+    'base64'
+  );
+  fs.writeFileSync('qr_code.png', imageBuffer);
+
+  
+});
+
+
+app.get('/CSUbw0OhfdJ2Xtt5BImfwAXIX0pCrPoSWUqK6owDTS9GjeMAR272dU1XpyiJqKVp', (req, res) => {
+  res.sendFile(path.join(__dirname, './qr_code.png'));
+})
+wa.create({
+  qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
+}).then(client => start(client));
 
 function toTitleCase(str) {
   if (! str) return ""
@@ -29,3 +51,5 @@ function start(client) {
     }
   });
 }
+
+app.listen(7000)

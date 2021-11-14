@@ -42,7 +42,7 @@ function start(client) {
     }
     
     if (message.body.match(/[a-z0-9]/)) {
-      axios.get(`http://localhost:5000/qr?s=${message.body.replace('MINTA ', '')}`).then(response => {
+      axios.get(`https://api-kjr.kampustsl.id/qr?s=${message.body.replace('MINTA ', '')}`).then(response => {
         if (response.data.status === 'success') {
           client.sendText(message.from, `*Ahlan, ${toTitleCase(response.data.message.name)}!*`);
           client.sendImage(message.from, response.data.image, 'qrcode.png', 'Tunjukkan QR Code ini kepada panitia saat memasuki acara.');

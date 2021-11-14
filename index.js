@@ -46,8 +46,17 @@ function start(client) {
 
       axios.get(`https://api-kjr.kampustsl.id/user/qr?s=${codes[0]}`).then(response => {
         if (response.data.status === 'success') {
-          client.sendText(message.from, `*Ahlan, ${toTitleCase(response.data.message.name)}!*`);
-          client.sendImage(message.from, response.data.image, 'qrcode.png', 'Tunjukkan QR Code ini kepada panitia saat memasuki acara.');
+          client.sendText(message.from, ` بسم الله
+          \n\*Ahlan, ${toTitleCase(response.data.message.name)}!*\nBerikut QR Code dan bukti pendaftaran untuk kajian 
+          \n ${response.data.schedule.name}
+          \nTempat : ${response.data.schedule.location}
+          \nTanggal : ${response.data.schedule.datetime}`)
+          ;
+          client.sendImage(message.from, response.data.image, 'qrcode.png', `Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.\nبارك الله فيكم\n
+            *Catatan :*\n
+            1. QR Code ini hanya untuk satu orang pendaftar.\n
+            2. Mari jaga dan lakukan protokol kesehatan.
+          `);
         }
       })
     }

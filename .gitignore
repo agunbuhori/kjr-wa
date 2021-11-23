@@ -1,7 +1,7 @@
 /node_modules
 /session*.json
 /qr_code.png
-
+/_IGNORE_COVID_HELPER
 # managed by open-wa
 **.data.json
 **.node-persist**

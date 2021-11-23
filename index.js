@@ -14,7 +14,7 @@ function start(client) {
     
     if (message.body.match(/[a-z0-9]{24}/g)) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
-      client.sendText(message.from, JSON.stringify(codes))
+      client.sendText(message.from, codes[0])
     }
   });
 }

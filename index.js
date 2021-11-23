@@ -14,8 +14,13 @@ function start(client) {
     
     if (message.body.match(/[a-z0-9]{24}/g)) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
-      axios.get(`https://api-kjr.kampustsl.id/user/${codes[1]}`, {params: {wa: message.from.replace('@c.us', '')}}).then(response => {
-        client.sendText(message.from, `
+      axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}`, {
+        params: {
+          wa: message.from
+        }
+      }).then(response => {
+        if (response.status === 'success') {
+          client.sendText(message.from, `
 KODE PENDAFTARAN KJR{kode} [/Bold Mohon langsung kirim ke nomor ini, untuk mendaptkan QR Code, jangan lakukan perubahan pada pesan ini] 
 Semoga Allah mudah urusan kita semua. 
 
@@ -36,7 +41,8 @@ Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.
 Catatan :
 1. QR Code ini hanya untuk satu orang pendaftar.
 2. Mari jaga dan lakukan protokol kesehatan.
-        `)
+        `) 
+        }
       })
     }
   });

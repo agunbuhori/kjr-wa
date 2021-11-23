@@ -16,7 +16,7 @@ function start(client) {
     if (message.body.match(/[a-z0-9]{24}/g)) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
       axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}`, {params: {wa: message.from.replace('@c.us', '')}}).then(result => {
-        client.sendText(`
+        client.sendText(message.from, `
 KODE PENDAFTARAN KJR{kode} [/Bold Mohon langsung kirim ke nomor ini, untuk mendaptkan QR Code, jangan lakukan perubahan pada pesan ini] 
 Semoga Allah mudah urusan kita semua. 
 

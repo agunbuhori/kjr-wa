@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@open-wa/wa-automate": "^4.23.9",
+    "@open-wa/wa-automate": "^4.23.18",
     "axios": "^0.24.0"
   }
 }

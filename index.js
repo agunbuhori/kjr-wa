@@ -1,6 +1,5 @@
 const wa = require('@open-wa/wa-automate');
 const { default: axios } = require('axios');
-const app = require('express')()
 
 wa.create({
   qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
@@ -15,7 +14,7 @@ function start(client) {
     
     if (message.body.match(/[a-z0-9]{24}/g)) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
-      axios.get(`https://api-kjr.kampustsl.id/user/${codes[1]}`, {params: {wa: message.from.replace('@c.us', '')}}).then(result => {
+      axios.get(`https://api-kjr.kampustsl.id/user/${codes[1]}`, {params: {wa: message.from.replace('@c.us', '')}}).then(response => {
         client.sendText(message.from, `
 KODE PENDAFTARAN KJR{kode} [/Bold Mohon langsung kirim ke nomor ini, untuk mendaptkan QR Code, jangan lakukan perubahan pada pesan ini] 
 Semoga Allah mudah urusan kita semua. 
@@ -42,5 +41,3 @@ Catatan :
     }
   });
 }
-
-app.listen(7000)

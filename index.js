@@ -18,8 +18,7 @@ function start(client) {
 
       axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}?wa=${message.from}`).then(response => {
         if (response.status === 'success') {
-          const user = response.message
-
+          const user = response.data.message
           client.sendText(message.from, `Ahlan ${user.name}`)
         } else {
           client.sendText(message.from, 'Invalid ' + JSON.stringify(message) + '  ' + `https://api-kjr.kampustsl.id/user/${codes[0]}?wa=${message.from}`)

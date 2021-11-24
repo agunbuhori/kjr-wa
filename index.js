@@ -5,6 +5,44 @@ wa.create({
   qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
 }).then(client => start(client));
 
+function renderMessage(to, user, client) {
+let message = `
+بسم الله
+Ahlan, *${user.name}*
+Berikut QR Code dan bukti pendaftaran untuk *${user.schedule.name}*
+Tempat : *${user.schedule.location}*
+Tanggal : *${user.schedule.datetime}*
+Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.
+بارك الله فيكم
+{OTHER}
+
+Tiket : https://kjr.kampustsl.id/detail/${user._id}
+
+*Catatan :*
+1. QR Code ini hanya untuk satu orang pendaftar.
+2. Mari jaga dan lakukan protokol kesehatan.`
+
+if (user.other) {
+  message = message.replace(/\{OTHER\}/, `QR Code ini terdaftar juga atas nama *${user.other.name}*`)
+} else {
+  message = message.replace(/\{OTHER\}/, '')
+}
+
+  client.sendText(to, message)
+  client.sendImage(to, 
+    user.qrcode,
+    user.name + '.png',
+  `${user.code} a.n ${user.name}`
+  )
+  if (user.other) {
+    client.sendImage(to, 
+      user.other.qrcode,
+      user.other.name + '.png',
+    `${user.other.code} a.n ${user.other.name}`
+    )
+  }
+}
+
  
 function start(client) {
   client.onMessage(message => {
@@ -19,7 +57,7 @@ function start(client) {
       axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}?wa=${message.from}`).then(response => {
         if (response.data.status === 'success') {
           const user = response.data.message
-          client.sendText(message.from, `Ahlan ${user.name}`)
+          renderMessage(message.from, user, client)
         } else {
           client.sendText(message.from, 'Invalid')
         }

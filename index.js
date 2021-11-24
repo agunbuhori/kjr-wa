@@ -21,7 +21,11 @@ function start(client) {
           const user = response.message
 
           client.sendText(message.from, `Ahlan ${user.name}`)
+        } else {
+          client.sendText(message.from, 'Invalid')
         }
+      }).catch(err => {
+        client.sendText(message.from, JSON.stringify(err))
       })
     }
   });

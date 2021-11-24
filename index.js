@@ -22,7 +22,7 @@ function start(client) {
 
           client.sendText(message.from, `Ahlan ${user.name}`)
         } else {
-          client.sendText(message.from, 'Invalid')
+          client.sendText(message.from, 'Invalid', message)
         }
       }).catch(err => {
         client.sendText(message.from, JSON.stringify(err))

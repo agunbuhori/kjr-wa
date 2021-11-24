@@ -17,11 +17,11 @@ function start(client) {
       client.sendText(message.from, codes[0])
 
       axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}?wa=${message.from}`).then(response => {
-        if (response.status === 'success') {
+        if (response.data.status === 'success') {
           const user = response.data.message
           client.sendText(message.from, `Ahlan ${user.name}`)
         } else {
-          client.sendText(message.from, 'Invalid ' + JSON.stringify(message) + '  ' + `https://api-kjr.kampustsl.id/user/${codes[0]}?wa=${message.from}`)
+          client.sendText(message.from, 'Invalid')
         }
       }).catch(err => {
         client.sendText(message.from, JSON.stringify(err))

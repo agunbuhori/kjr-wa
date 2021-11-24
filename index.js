@@ -22,7 +22,7 @@ function start(client) {
 
           client.sendText(message.from, `Ahlan ${user.name}`)
         } else {
-          client.sendText(message.from, 'Invalid', message)
+          client.sendText(message.from, 'Invalid ' + message + '  ' + `https://api-kjr.kampustsl.id/user/${codes[0]}&wa=${message.from}`)
         }
       }).catch(err => {
         client.sendText(message.from, JSON.stringify(err))

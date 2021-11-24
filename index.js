@@ -16,7 +16,7 @@ function start(client) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
       client.sendText(message.from, codes[0])
 
-      axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}`, {params: {wa: message.from}}).then(response => {
+      axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}&wa=${message.from}`).then(response => {
         if (response.status === 'success') {
           const user = response.message
 

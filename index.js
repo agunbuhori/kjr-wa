@@ -1,5 +1,6 @@
 const wa = require('@open-wa/wa-automate');
 const { default: axios } = require('axios');
+var format = require('date-format');
 
 wa.create({
   qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
@@ -11,7 +12,7 @@ let message = `
 Ahlan, *${user.name}*
 Berikut QR Code dan bukti pendaftaran untuk *${user.schedule.name}*
 Tempat : *${user.schedule.location}*
-Tanggal : *${user.schedule.datetime}*
+Tanggal : *${format('dd MM yyyy', new Date(user.schedule.dateteime)) +', jam '+ format('hh:mm', new Date(user.schedule.dateteime))}*
 Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.
 بارك الله فيكم
 {OTHER}

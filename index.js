@@ -16,6 +16,7 @@ Tempat : *${user.schedule.location}*
 Tanggal : *${format('dd MM yyyy', new Date(user.schedule.dateteime)) +', jam '+ format('hh:mm', new Date(user.schedule.dateteime))}*
 Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.
 بارك الله فيكم
+
 {OTHER}
 
 Tiket : https://kjr.kampustsl.id/detail/${user._id}

@@ -6,6 +6,7 @@ wa.create({
   qrTimeout: 0, //0 means it will wait forever for you to scan the qr code
 }).then(client => start(client));
 
+
 function renderMessage(to, user, client) {
 let message = `
 بسم الله

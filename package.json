@@ -2,6 +2,5 @@
   "dependencies": {
     "@open-wa/wa-automate": "^4.23.18",
     "axios": "^0.24.0",
-    "dateformat": "^5.0.2"
   }
 }

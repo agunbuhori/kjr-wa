@@ -13,7 +13,7 @@ let message = `
 Ahlan, *${user.name}*
 Berikut QR Code dan bukti pendaftaran untuk *${user.schedule.name}*
 Tempat : *${user.schedule.location}*
-Tanggal : *${format('dd-MM-yyyy', new Date(user.schedule.dateteime)) +', Jam '+ format('hh:mm', new Date(user.schedule.dateteime))}*
+Tanggal : *${format('dd-MM-yyyy hh:mm', new Date(user.schedule.dateteime))}*
 Silahkan simpan dan tunjukan QR Code ini pada panitia kajian.
 بارك الله فيكم
 
@@ -55,7 +55,7 @@ function start(client) {
     
     if (message.body.match(/[a-z0-9]{24}/g)) {
       const codes = message.body.match(/[a-z0-9]{24}/g)
-      axios.get(`https://api-kjr.kampustsl.id/user/${codes[0]}?wa=${message.from}`).then(response => {
+      axios.get(`https://api-kjr.kampustsl.id/register/user/${codes[0]}?wa=${message.from}`).then(response => {
         if (response.data.status === 'success') {
           const user = response.data.message
           renderMessage(message.from, user, client)

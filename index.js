@@ -30,7 +30,7 @@ function start(client) {
                     if (item.type === 'text')
                         client.sendText(message.from, item.message);
                     else if (item.type === 'image')
-                        client.sendImage(message.from, item.message, item.label);
+                        client.sendImage(message.from, item.message, item.label+'.png', item.label);
                 })
             }
         })

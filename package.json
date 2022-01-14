@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@open-wa/wa-automate": "^4.23.18",
+    "@open-wa/wa-automate": "^4.28.13",
     "axios": "^0.24.0",
     "date-format": "^3.0.0"
   }

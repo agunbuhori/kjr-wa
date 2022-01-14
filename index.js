@@ -26,7 +26,12 @@ function start(client) {
             }
         }).then(response => {
             if (response.data.reply) {
-                client.sendText(message.from, response.data.message);
+                response.data.messages.forEach(item => {
+                    if (item.type === 'text')
+                        client.sendText(message.from, item.message);
+                    else if (item.type === 'image')
+                        client.sendImage(message.from, item.message, item.label);
+                })
             }
         })
     }
